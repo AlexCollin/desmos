@@ -253,7 +253,7 @@ func getChainLinkJSONFromMultiSign(
 
 	sigs, err := multiTxBuilder.GetTx().GetSignaturesV2()
 	if len(sigs) != 1 {
-		return profilescliutils.ChainLinkJSON{}, fmt.Errorf("invalid number of signature")
+		return profilescliutils.ChainLinkJSON{}, fmt.Errorf("invalid number of signatures")
 	}
 	multisigSig := sigs[0]
 
@@ -281,17 +281,16 @@ func getChainLinkJSONFromMultiSign(
 
 ### Backwards Compatibility
 
-We change `Signature` of `Proof` into `SignatureDescriptor_Data` from hex-encode string of signature bytes.
-This feature is not backwards compatible. Migrating the old chain link signature to `SignatureDescriptor_Data`
+Since we change the `Proof#Signature` field from a hex-encode string into a `SignatureDescriptor_Data`, this feature is not backwards compatible. Migrating the old chain link signatures to `SignatureDescriptor_Data`
 is required.
 
 ### Positive
 
-* Give the possibility to link multisig account to desmos profile
+- Give the possibility to link multisig account to desmos profile
 
 ### Negative
 
-* Raise the complexity to generate and verify the signature
+- Raise the complexity to generate and verify the signature
 
 ### Neutral
 
@@ -302,11 +301,11 @@ is required.
 ## Test Cases [optional]
 
 The following tests cases MUST to be present:
-* Verify `Proof` including wrong format signature returns error
-* Verify `Proof` including non-matched single signature and pubkey returns error
-* Verify `Proof` including non-matched multi signatures and pubkeys returns error
-* Verify `Proof` including proper single signature and pubkey returns no error
-* Verify `Proof` including proper multi signatures and pubkeys returns no error
+- Verify `Proof` including wrong format signature returns error
+- Verify `Proof` including non-matched single signature and pubkey returns error
+- Verify `Proof` including non-matched multi signatures and pubkeys returns error
+- Verify `Proof` including proper single signature and pubkey returns no error
+- Verify `Proof` including proper multi signatures and pubkeys returns no error
 
 
 ## References
